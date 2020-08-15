@@ -42,32 +42,50 @@ function readCsv(data) {
         //        else{
          //           insert +='<td>'+ arr[i]+'</td>';
          //       }
-        $(this).each(function(i) {
-            if(i==0){
+        $(this).each(function(j) {
+            if(j==0){
                 insert += '<td class="rowhead">' + this + '</td>';
             }else
-            if(i==11){
+            if(j==11){
                 if(this =="diviation_rate_25d"){　//表頭が数値化しないように
                     insert += '<td>' + this + '</td>';
                 }else
                 if(Math.abs(parseFloat(this))<= 0.03){
-                    insert += '<td class="diviation_rate_25d important">' + Math.round(this*100*100)/100 + '%</td>'; 
+                    if(Math.sign(parseFloat(this)) == 1){
+                        insert += '<td class="diviation_rate_25d important positive">' + Math.round(this*100*100)/100 + '%</td>';
+                    }else{
+                        insert += '<td class="diviation_rate_25d important  negative">' + Math.round(this*100*100)/100 + '%</td>'; 
+                    }
+                    
+                }else{ if(Math.sign(parseFloat(this)) == 1){
+                    insert += '<td class="diviation_rate_25d  positive">' + Math.round(this*100*100)/100 + '%</td>';
                 }else{
-                    insert += '<td class="diviation_rate_25d">' + Math.round(this*100*100)/100 + '%</td>';
+                    insert += '<td class="diviation_rate_25d  negative">' + Math.round(this*100*100)/100 + '%</td>'; 
                 }
-            }else
-            if(i==12){
+            }
+        }else
+            if(j==12){
                 if(this =="diviation_rate_75d"){　//表頭が数値化しないように
                     insert += '<td>' + this + '%</td>';
                 }else
                 if(Math.abs(parseFloat(this))<= 0.03){
-                    insert += '<td class="diviation_rate_75d important">' + Math.round(this*100*100)/100 + '%</td>';  
+                    if(Math.sign(parseFloat(this)) == 1){
+                        insert += '<td class="diviation_rate_75d important positive">' + Math.round(this*100*100)/100 + '%</td>';
+                    }else{
+                        insert += '<td class="diviation_rate_75d important  negative">' + Math.round(this*100*100)/100 + '%</td>'; 
+                    }                    
                 }else{
+                    if(Math.sign(parseFloat(this)) == 1){
+                        insert += '<td class="diviation_rate_75d  positive">' + Math.round(this*100*100)/100 + '%</td>';
+                    }else{
+                        insert += '<td class="diviation_rate_75d  negative">' + Math.round(this*100*100)/100 + '%</td>'; 
+                }
+
                     insert += '<td class ="diviation_rate_75d">' + Math.round(this*100*100)/100 + '%</td>'; 
                 }
                     
             }else
-            if(i==7){
+            if(j==7){
                 if(this =="Change_ratio%"){　//表頭が数値化しないように
                     insert += '<td>' + this + '</td>';
                 }else
