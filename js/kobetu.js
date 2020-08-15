@@ -12,8 +12,11 @@ function getParam(name, url) {
 
 //alert(getParam("qcode"))
 qcode=getParam("qcode")
+quote_name=getParam("quote_name")
+
 $(document).ready(function(){
     $("p").append(qcode)  //そのまま書いたらapendされなかったので、document.readyの後に入れる
+    $("p").append(quote_name)  
   });
 
 var csvfile = S3Bucket + qcode + 'h.csv';　//S3のオブジェクト名を格納すること

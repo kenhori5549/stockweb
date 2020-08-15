@@ -1,6 +1,19 @@
-p{
-    color:red
+li{
+    color:red;
+    padding: 5px;
 }
+
+.ma_25s{
+    padding:0;
+    height: 0;
+    line-height: 2.5em;
+}
+.ma_25s a{
+    display:block;
+    width:100%;
+    height:100%;
+}
+
 
 .ma_25s.important{
     background-color: #F4C7C3;
@@ -40,3 +53,7 @@ th, td {
     width: 0.7em;
   }
   */
+
+  a:link, a:visited, a:hover, a:active {
+    color: black;
+  }

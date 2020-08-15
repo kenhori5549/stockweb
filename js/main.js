@@ -28,8 +28,9 @@ function readCsv(data) {
             }else
             if(j==3){
                 var qcode =csv[i][0]
-                var kobetu_ja_url ='./stock_kobetu_ja.html?qcode='+qcode
-                
+                var quote_name =csv[i][1]
+                var kobetu_ja_url ='stock_kobetu_ja.html?qcode='+qcode+ '&quote_name='+encodeURIComponent(quote_name)
+                console.log(kobetu_ja_url)
 
                 if(Math.abs(parseFloat(this))<= 4){
                     insert += '<td class="ma_25s important"><a href=' + kobetu_ja_url+ '>' + this + '</a></td>';
@@ -40,6 +41,28 @@ function readCsv(data) {
                 }
 
             }else
+            if(j==5){
+                if(parseFloat(this)>=80){
+                    insert += '<td class="pers bg-danger">' + this + '</td>';
+                }else{
+                    if(parseFloat(this)>=40){
+                        insert += '<td class="pers bg-warning">' + this + '</td>';
+                    }else{
+                        if(parseFloat(this)>=20){
+                            insert += '<td class="pers bg-success">' + this + '</td>';
+                        }else{
+                            if(parseFloat(this)>=10){
+                                insert += '<td class="pers bg-info">' + this + '</td>';
+                            }else{
+                                insert += '<td class="pers">' + this + '</td>';
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        else
             if(j==7){
                 //正負判定
                 if(Math.sign(parseFloat(this)) == 1){
