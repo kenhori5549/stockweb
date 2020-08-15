@@ -1,0 +1,42 @@
+p{
+    color:red
+}
+
+.ma_25s.important{
+    background-color: #F4C7C3;
+}
+.rowhead{
+    background-color: #D9EAD3;
+}
+.important{
+    background-color: #F4C7C3;
+}
+.good{
+    background-color: #FCE8B2
+
+}
+.thead{
+    background-color: #D9EAD3;
+}
+
+.positive{
+    color:red
+}
+
+.negative{
+    color:blue
+}
+/*
+thead, tbody {
+    display: block;
+}
+
+tbody {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 1500px;
+  }
+th, td {
+    width: 0.7em;
+  }
+  */
