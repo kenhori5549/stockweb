@@ -16,8 +16,8 @@ $(document).ready(function(){
     $("p").append(qcode)  //そのまま書いたらapendされなかったので、document.readyの後に入れる
   });
 
+var csvfile = S3Bucket + qcode + 'h.csv';　//S3のオブジェクト名を格納すること
 
-var csvfile = '' + qcode + 'h.csv';　//S3のオブジェクト名を格納すること
 function readCsv(data) {
     var target = '#csv-body';
     var csv = $.csv.toArrays(data);
