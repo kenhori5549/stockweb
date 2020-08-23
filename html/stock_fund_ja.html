@@ -20,7 +20,25 @@
             <li>終値ベースで25日移動平均線を下回ったら売却検討です</li>
             <li>決算発表前はわずかに25日移動平均線を下回っても様子見可能です</li>
             <li>移動平均線乖離率25日の数値クリックで、各個別株のヒストリカルを確認可能です</li>
-        </ul> 
+        </ul>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button id="quote_add" class="btn btn-outline-secondary" type="button" >銘柄追加</button>
+            </div>
+            <input type="text" id ="quote_add_val" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+          </div>
+        </div> 
+          <div class="input-group mb-6">
+          <div class="input-group-prepend">
+            <button id ="quote_delete"class="btn btn-outline-secondary" type="button" id="button-addon1">銘柄削除</button>
+          </div>
+          <input type="text" id ="quote_delete_val"class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+        </div>
+        <p>本文です </p>
         <table id= "csv-body" class="table table-bordered table-hover table-responsive"></table>
+<script>
+
+</script>
     </body>
 </html>

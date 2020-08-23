@@ -114,8 +114,8 @@ function readCsv(data) {
         $(target).append(insert);    
     }
     $(target).append("</tbody>");
-});
-   
+    });
+};   
 //stock_kobetu_ja.htmlへのリンク作成
 //$(".ma_25s").each(function(i, d){
 //    $(".ma_25s").append("<a></a>")
@@ -123,12 +123,57 @@ function readCsv(data) {
 //    //コンソールにインデックス番号とテキストを出力する
 //    console.log('インデックス番号:' + i + '、テキスト:' + $(d).text());
 //  });
-
-
 //
-}
+function change_quote(type){
+    //alert(url);
+    if(type=="add"){
+        var quote_add =$('#quote_add_val').val();
+        if(quote_add==""){
+            alert('追加銘柄を入力してください')
+            return;
+        }
+        var parameter = {
+          quote :quote_add,
+          type :'add',
+          market:'ja'
+        };
+    }else
+    if(type=="delete"){
+        var quote_delete =$('#quote_delete_val').val();
+        if(quote_delete==""){
+            alert('削除銘柄を入力してください')
+            return;
+        }
 
+        var parameter = {
+          quote :quote_delete,
+          type :'delete',
+          market:'ja'
+        };
+    }
+    
+    parameter = $.param( parameter );
+    url =url+ parameter;
+    alert(url);
+    $.get(url,function(data){
+      location.reload(true)
+      alert(data);
+    });
+};
+//quote登録と削除API呼び出し
+//
 $(function(){
-    //コールバック関数のきれいな使い方だ・・
     $.get(csvfile, readCsv, 'text');
+    $('button').on('click', function() {
+    //alert("クリックされました");
+   });
+    $('#quote_add').on('click',function(){
+    //alert("クリックされましたs");
+    change_quote('add')
+    
+    });
+    $('#quote_delete').on('click',function(){
+       //alert("クリックされましたs");
+        change_quote('delete')
+    });
 });
