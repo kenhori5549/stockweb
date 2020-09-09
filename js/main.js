@@ -26,13 +26,29 @@ function readCsv(data) {
             if(j==0){
                 insert += '<td class="rowhead">' + this + '</td>';
             }else
+            //銘柄名押下で銘柄詳細に飛ぶ
+            if(j==1){
+                var qcode =csv[i][0]
+                var detail_parameter= {
+                    sa :'find',
+                    ta :'n',
+                    wd: qcode,
+                    x:'0',
+                    y:'0'
+                  };
+
+                var  parameter = $.param(detail_parameter );
+                var detail_url = detail_url_origin+ parameter
+                insert += '<td class="quote_name"><a href=' + detail_url+ '>' + this + '</a></td>';
+                
+            }else
             if(j==3){
                 var qcode =csv[i][0]
                 var quote_name =csv[i][1]
                 var kobetu_ja_url ='stock_kobetu_ja.html?qcode='+qcode+ '&quote_name='+encodeURIComponent(quote_name)
                 console.log(kobetu_ja_url)
 
-                if(Math.abs(parseFloat(this))<= 4){
+                if(parseFloat(this)<= 5 &&parseFloat(this)>= 0){
                     insert += '<td class="ma_25s important"><a href=' + kobetu_ja_url+ '>' + this + '</a></td>';
                     //console.log("25ma important",parseFloat(this)); 
                 }else{
@@ -160,13 +176,22 @@ function change_quote(type){
       alert(data);
     });
 };
-//quote登録と削除API呼び出し
-//
+
+
+//csvファイルを読み込むときキャッシュ除け設定
+$.ajaxSetup({
+    cache: false
+});
+
+//csvファイル読み込み
 $(function(){
     $.get(csvfile, readCsv, 'text');
     $('button').on('click', function() {
     //alert("クリックされました");
    });
+
+
+//quote登録と削除API呼び出し
     $('#quote_add').on('click',function(){
     //alert("クリックされましたs");
     change_quote('add')
