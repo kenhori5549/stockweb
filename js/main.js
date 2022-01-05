@@ -185,20 +185,29 @@ $.ajaxSetup({
 
 //csvファイル読み込み
 $(function(){
-    $.get(csvfile, readCsv, 'text');
-    $('button').on('click', function() {
-    //alert("クリックされました");
-   });
-
+    $.ajax({
+    url: csvfile,
+    type: 'GET',
+    beforeSend: function( xhr, settings ) { xhr.setRequestHeader('Authorization','Basic '+ authorization_token
+     ); },
+    dataType: 'text'
+  }).done(function(data) {
+    readCsv(data);
+  })
+    .fail(function(XMLHttpRequest, textStatus, errorThrown){
+    console.log(XMLHttpRequest.status);
+    console.log(textStatus);
+    console.log(errorThrown);
+});
 
 //quote登録と削除API呼び出し
     $('#quote_add').on('click',function(){
-    //alert("クリックされましたs");
+    //alert("クリックされました");
     change_quote('add')
     
     });
     $('#quote_delete').on('click',function(){
-       //alert("クリックされましたs");
+       //alert("クリックされました");
         change_quote('delete')
     });
 });
